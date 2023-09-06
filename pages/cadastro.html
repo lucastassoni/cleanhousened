@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro | Clean House</title>
+    <link href="/assets/css/estilos.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+    <script src="/assets/js/cadastro.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+    <link rel="icon" href="/assets/img/clean-house-icon.png">
+</head>
+
+<body onload="carregarCadastro()">
+    <div class="row" id="corpo">
+        <div class="col-md-5 text-justify" id="imagemlogo">
+            <img src="/assets/img/logo.png" class="ajustavel">
+        </div>
+        <div class="col-md-7 text-justify" id="campostext">
+            <form>
+                <div class="row" id="titulo">
+                    <div class="col-md-12 text-justify">
+                        <h1>Cadastro</h1>
+                    </div>
+
+                    <div class="col-md-6 text-justify">
+                        <label for="nome">Nome</label>
+                        <input type="text" id="nome" placeholder="Clean" autocomplete="off" required>
+                    </div>
+                    <div class="col-md-6 text-justify">
+                        <label for="sobrenome">Sobrenome</label>
+                        <input type="text" id="sobrenome" placeholder="House" autocomplete="off" required>
+                    </div>
+
+                    <div class="col-md-12 text-justify">
+                        <label for="e-mail">E-mail</label>
+                        <input type="email" id="e-mail" placeholder="cleanhouse@gmail.com" autocomplete="off" required>
+                    </div>
+
+                    <div class="col-md-12 text-justify password-container">
+                        <label for="senha">Senha</label>
+                        <input type="password" id="senha" placeholder="*********" required autocomplete="off">
+                        <span class="toggle-password" onclick="togglePasswordVisibility()">
+                            <img src="/assets/img/olho_fechado.png" alt="Mostrar senha" id="eye-icon">
+                        </span>
+                    </div>
+
+                    <div class="col-md-6 text-justify">
+                        <label for="cpf">CPF</label>
+                        <input type="text" id="cpf" placeholder="xxx.xxx.xxx-xx" maxlength="14" required
+                            autocomplete="off">
+                    </div>
+                    <div class="col-md-6 text-justify">
+                        <label for="telefone">Telefone</label>
+                        <input type="text" id="telefone" placeholder="(xx) xxxxx-xxxx" maxlength="14" required
+                            autocomplete="off">
+                    </div>
+                    <div class="col-md-12 text-justify">
+                        <label>Você é um...</label>
+                        <select class="col-md-12" id="tipo_usuario" required>
+                            <option value="empregador">Empregador</option>
+                            <option value="profissional">Profissional</option>
+                        </select>
+                    </div>
+                    <div class="col-md-12 text-justify">
+                        <input type="button" class="botao" onClick="redirecionar()" value="Enviar">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
+    <script>$('#telefone').mask('(00) 00000-0000');</script>
+    <script>$('#cpf').mask('000.000.000-00', { reverse: false });</script>
+    <script>
+        function togglePasswordVisibility() {
+            const passwordField = document.getElementById('senha');
+            const eyeIcon = document.getElementById('eye-icon');
+
+            if (passwordField.type === 'text') {
+                passwordField.type = 'password';
+                eyeIcon.src = '/assets/img/olho_fechado.png';
+            } else {
+                passwordField.type = 'text';
+                eyeIcon.src = '/assets/img/olho_aberto.png';
+            }
+        }
+    </script>
+
+
+
+</body>
+
+</html>

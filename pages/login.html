@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Clean House</title>
+    <link href="/assets/css/estilos.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.4/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- Adiciona a biblioteca SweetAlert -->
+    <link rel="icon" href="/assets/img/clean-house-icon.png">
+</head>
+
+<body>
+    <div class="row" id="corpo">
+        <div class="col-md-5 text-justify" id="imagemlogo">
+            <img src="/assets/img/logo.png" class="ajustavel">
+        </div>
+        <div class="col-md-7 text-justify" id="campostext">
+            <form>
+                <div class="row" id="titulo">
+                    <div class="col-md-12 text-justify">
+                        <h1>Login</h1>
+                    </div>
+                    <div class="col-md-12 text-justify">
+                        <label for="e-mail">E-mail</label>
+                        <input type="text" id="e-mail" placeholder="cleanhouse@gmail.com" required autocomplete="off">
+                    </div>
+
+                    <div class="col-md-12 text-justify password-container">
+                        <label for="senha">Senha</label>
+                        <input type="password" id="senha" placeholder="*********" required autocomplete="off">
+                        <span class="toggle-password" onclick="togglePasswordVisibility()">
+                            <img src="/assets/img/olho_fechado.png" alt="Mostrar senha" id="eye-icon">
+                        </span>
+                    </div>
+                    <div class="col-md-6 text-justify">
+                        <p class="text-botao">Ainda não tem conta?</p>
+                        <a href='cadastro.html' class="botao1">Cadastre-se</a>
+                    </div>
+                    <div class="col-md-6 text-justify">
+                        <input type="button" class="botao2" onClick="fazerLogin()" value="Entrar">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
+    <script>
+        function togglePasswordVisibility() {
+            const passwordField = document.getElementById('senha');
+            const eyeIcon = document.getElementById('eye-icon');
+
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                eyeIcon.src = '/assets/img/olho_aberto.png';
+            } else {
+                passwordField.type = 'password';
+                eyeIcon.src = '/assets/img/olho_fechado.png';
+            }
+        }
+
+        function fazerLogin() {
+            const email = document.getElementById("e-mail").value;
+            const senha = document.getElementById("senha").value;
+
+            if (!email.trim() || !senha.trim()) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Por favor, preencha o e-mail e a senha.'
+                });
+                return;
+            }
+
+            axios.post('http://127.0.0.1:3000/login', {
+                email: email,
+                senha: senha
+            })
+                .then(function (response) {
+                    console.log(response);
+                    if (response.data.autenticado) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Sucesso',
+                            text: 'Login bem-sucedido.'
+                        }).then(() => {
+                            window.location.href = "/pages/contratante.html";
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Email ou senha incorretos.'
+                        });
+                    }
+                })
+                .catch(function (error) {
+                    console.error(error);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Email ou senha incorretos.'
+                    });
+                });
+        }
+
+
+    </script>
+
+    <script>
+        // Oculta a mensagem de vazamento de dados do Google
+        document.addEventListener('DOMContentLoaded', function () {
+            const alertElement = document.querySelector('.alert-google');
+            if (alertElement) {
+                alertElement.style.display = 'none';
+            }
+        });
+    </script>
+
+</body>
+
+</html>

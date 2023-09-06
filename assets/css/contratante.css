@@ -1,0 +1,92 @@
+.container-fluid {
+  background-color: #9FDEEC;
+  overflow: hidden;
+}
+
+.home {
+  font-size: 20px;
+}
+
+#menu {
+  height: 100px;
+}
+
+.col-menu {
+  height: 100% !important;
+}
+
+.ajustavel {
+  height: 50%;
+  margin-top: 10%;
+}
+
+.logo {
+  height: 90% !important;
+  padding-top: 2% !important;
+  margin-top: 0 !important;
+}
+
+#tudo {
+  height: 100%;
+  background-color: #C9F5FF;
+  overflow: hidden;
+}
+
+
+/*COMEÇO DO INFORNO*/
+
+button {
+  display: block;
+  margin-bottom: 10px;
+}
+
+#campoInput {
+  display: block;
+}
+
+#textoPublicacao {
+  border: 1px solid black;
+  border-radius: 15px;
+  padding: 10px;
+  padding-bottom: 140px;
+  width: 70%;
+  height: 170px;
+  overflow: hidden;
+}
+
+#publicacoes {
+  margin-top: 20px;
+  height: 83vh;
+  overflow: auto;
+}
+
+.publicacao {
+  border: 1px solid black;
+  border-radius: 30px;
+  padding: 10px;
+  /*padding-bottom: 140px;*/
+  padding-left: 13px;
+  width: 70%;
+  /*height: 45vh;*/
+  margin-left: 18%;
+  background-color: white;
+  word-wrap: break-word;
+  margin-bottom: 20px;
+}
+
+#corpo {
+  height: 100vh !important;
+}
+
+.formulario input {
+  width: 100% !important;
+}
+
+#descricao {
+  resize: none;
+}
+
+#alerta{
+  font-weight: bold;
+  color: rgb(228, 84, 84);
+}
